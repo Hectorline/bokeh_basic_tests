@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Complete Example</title>
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.css" type="text/css" />
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-0.12.5.min.js"></script>
+    <!-- The order of CSS and JS imports above is important. -->
+</head>
+
+<body>
+<table>
+    <tr>
+        <td>Work</td>
+        <td>Eat</td>
+        <td>Commute</td>
+        <td>Sport</td>
+        <td>Watch TV</td>
+        <td>Sleep</td>
+    </tr>
+    <tr>
+        <form id="frm1">
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+        </form>
+    </tr>
+</table>
+<button onclick="myFunction()">Try it</button>
+
+<div>
+    <script type="text/javascript">
+
+        function myFunction() {
+            var x = document.forms["frm1"];
+            var values2=[];
+            var i;
+            for (i = 0; i < x.length ;i++) {
+                values2[i]=parseInt(x.elements[i].value);
+            }
+            var plt = Bokeh.Plotting;
+            var pie_data = {
+                labels: ['Work', 'Eat', 'Commute', 'Sport', 'Watch TV', 'Sleep'],
+                values: values2
+            };
+            var tools = "pan,crosshair,wheel_zoom,box_zoom,reset,save";
+            var p1 = Bokeh.Charts.pie(pie_data,{title: 'Pie Chart', tools: tools, height: 400, width: 400});
+            plt.show(p1, document.getElementById('myplot'));
+
+        }
+
+    </script>
+
+</div>
+
+</body>
+</html>
